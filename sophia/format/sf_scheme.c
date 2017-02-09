@@ -31,7 +31,8 @@ sf_cmpstring_reverse(char *a, int asz, char *b, int bsz, void *arg ssunused)
 	if (ssunlikely(rc == 0)) {
 		if (sslikely(asz == bsz))
 			return 0;
-		return (asz < bsz) ? -1 : 1;
+		//TODO reverse for compare with prefix?
+		return (asz < bsz) ? 1 : -1;
 	}
 	return rc > 0 ? -1 : 1;
 }
@@ -211,7 +212,7 @@ sf_schemeset(sfscheme *s, sffield *f, char *opt)
 		f->cmp = sf_cmpstring;
 	} else
 	if (strcmp(opt, "string_rev") == 0) {
-		f->type = SS_STRING;
+		f->type = SS_STRINGREV;
 		f->fixed_size = 0;
 		f->cmp = sf_cmpstring_reverse;
 	} else
